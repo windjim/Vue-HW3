@@ -1,7 +1,7 @@
 import { createApp } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
 
 const url = "https://vue3-course-api.hexschool.io/v2";
-const path = "";
+const path = "lovecorgi";
 
 createApp({
   data() {
@@ -58,14 +58,14 @@ createApp({
         this.bsDeleteModel.show();
       }
     },
-    addImage() {},
     comfirmBtn() {
-      axios[`${this.comfirmState}`](
-        `${url}/api/${path}/admin/product/${this.addData.id}`,
-        {
-          data: this.addData,
-        }
-      )
+      let apiUrl = `${url}/api/${path}/admin/product/`;
+      if (this.comfirmState === "put") {
+        apiUrl = `${url}/api/${path}/admin/product/${this.addData.id}`;
+      }
+      axios[`${this.comfirmState}`](apiUrl, {
+        data: this.addData,
+      })
         .then((res) => {
           this.bsModel.hide();
           this.productList();
@@ -89,7 +89,7 @@ createApp({
   },
   mounted() {
     const token = document.cookie.replace(
-      /(?:(?:^|.*;\s*)VueHW2Token\s*\=\s*([^;]*).*$)|^.*$/,
+      /(?:(?:^|.*;\s*)VueHW3Token\s*\=\s*([^;]*).*$)|^.*$/,
       "$1"
     );
     // console.log(token);

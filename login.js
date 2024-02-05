@@ -16,7 +16,7 @@ createApp({
         .post(`${url}/admin/signin`, this.user)
         .then((res) => {
           const { token, expired } = res.data;
-          document.cookie = `VueHW2Token=${token}; expires=${new Date(
+          document.cookie = `VueHW3Token=${token}; expires=${new Date(
             expired
           )}`;
           window.location.href = "index.html";
